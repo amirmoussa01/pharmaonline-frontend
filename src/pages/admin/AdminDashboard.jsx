@@ -38,7 +38,7 @@ const containerVariants = {
     }
   }
 };
-
+const API_URL = import.meta.env.VITE_API_URL;
 const fadeSlideUp = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('/api/adm/stats', {
+      const res = await axios.get(`${API_URL}/api/adm/stats`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setStats({
@@ -75,7 +75,7 @@ const AdminDashboard = () => {
   const fetchChart = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('/api/adm/commandes-by-day', {
+      const res = await axios.get(`${API_URL}/api/adm/commandes-by-day`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setChartData(Array.isArray(res.data) ? res.data : []);
