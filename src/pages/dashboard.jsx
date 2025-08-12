@@ -29,7 +29,7 @@ const rowVariants = {
     transition: { duration: 0.6, ease: 'easeOut' }
   }
 };
-
+const API_URL = import.meta.env.VITE_API_URL;
 const Dashboard = () => {
   const [commandesCount, setCommandesCount] = useState(0);
   const [revenue, setRevenue] = useState(0);
@@ -41,7 +41,7 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('/api/user/dashboard', {
+        const res = await axios.get(`${API_URL}/api/user/dashboard`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
